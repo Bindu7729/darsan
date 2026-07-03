@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Brand Color Tokens matching specification section 2 */
+  --color-brand-gold: #D97706;
+  --color-brand-hover: #B45309;
+  --color-brand-secondary: #F59E0B;
+  --color-brand-accent: #DC2626;
+  --color-brand-bgBase: #FDFBF7;
+  --color-brand-bgSurface: #FFFFFF;
+  --color-brand-borderSubtle: #EFEBE3;
+  --color-brand-textPrimary: #0F172A;
+  --color-brand-textSecondary: #475569;
+  --color-brand-success: #15803D;
+  --color-brand-warning: #B45309;
+  --color-brand-error: #B91C1C;
+
+  /* Typography System tokens matching specification section 3 */
+  --font-display: 'Cinzel', serif;
+  --font-section: 'Playfair Display', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  /* Layout Shadow Tokens matching specification section 4 */
+  --shadow-soft-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-soft-md: 0 8px 24px rgba(15, 23, 42, 0.06), 0 2px 8px rgba(15, 23, 42, 0.02);
+  --shadow-soft-lg: 0 16px 48px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+
+  /* Border Radii Tokens matching specification section 4 */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+@utility glass-navbar {
+  background: rgba(253, 251, 247, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid #EFEBE3;
+}
+
+@utility interactive-card {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+/* Base resets for typography pairings */
+h1, .font-display {
+  font-family: var(--font-display);
+}
+h2, h3, .font-section {
+  font-family: var(--font-section);
+}
+body {
+  background-color: var(--color-brand-bgBase);
+  color: var(--color-brand-textPrimary);
+}
