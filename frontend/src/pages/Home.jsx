@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../utils/api';
 import { Link } from 'react-router-dom';
-import { Search, Calendar, MapPin, Star, ArrowRight, Flame, Loader2, Landmark, Award, ShieldCheck, Heart, Sparkles, CheckCircle2, ChevronRight, HelpCircle } from 'lucide-react';
+import { Search, Calendar, MapPin, Star, ArrowRight, Flame, Loader2, Landmark, Award, ShieldCheck, Heart, Sparkles, CheckCircle2, HelpCircle } from 'lucide-react';
 import Footer from '../components/Footer';
 
 export default function Home() {
@@ -41,13 +41,6 @@ export default function Home() {
     { name: "Suresh Iyer", location: "Chennai", comment: "DarshanEase made our annual Tirupati pilgrimage completely hassle-free. Booking the VIP slots was secure and took less than 2 minutes!", rating: 5 },
     { name: "Meenakshi Joshi", location: "Pune", comment: "The live wait-time updates and clear dress code instructions on the details page were extremely helpful for our family visit to Kashi.", rating: 5 },
     { name: "Rahul Deshmukh", location: "Mumbai", comment: "Excellent app interface. It feels like booking a high-end flight or hotel while maintaining the spiritual purity. Direct donations are transparent.", rating: 5 }
-  ];
-
-  // Upcoming Festivals Mock Dataset
-  const festivals = [
-    { name: "Maha Shivratri", date: "Feb 15, 2026", description: "Special night-long Abhishekam slots are now open for online bookings.", image: "https://images.unsplash.com/photo-1609137144813-7d88390234a5?auto=format&fit=crop&q=80&w=400" },
-    { name: "Ganesh Chaturthi", date: "Sep 18, 2026", description: "Premium pass registration open for major Siddhivinayak Pujas.", image: "https://images.unsplash.com/photo-1567591937965-dbd8e1465ad6?auto=format&fit=crop&q=80&w=400" },
-    { name: "Kartik Poornima", date: "Nov 24, 2026", description: "Varanasi Ganga Aarti boat boarding passes available.", image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&q=80&w=400" }
   ];
 
   // Frequently Asked Questions Dataset
@@ -214,37 +207,6 @@ export default function Home() {
               <p className="text-3xl md:text-4xl font-bold font-display text-brand-secondary">80G</p>
               <p className="text-[10px] uppercase tracking-wider text-slate-400">Tax Exemption receipts issued</p>
             </div>
-          </div>
-        </section>
-
-        {/* 4. UPCOMING FESTIVALS SECTION */}
-        <section className="py-20 px-6 max-w-7xl mx-auto space-y-12">
-          <div className="text-center space-y-2">
-            <span className="text-[10px] font-bold text-brand-gold uppercase tracking-wider">Auspicious Dates</span>
-            <h2 className="text-3xl font-bold text-brand-textPrimary font-section">Upcoming Festivals</h2>
-            <p className="text-xs text-brand-textSecondary max-w-xl mx-auto">Book special Darshan passes for key calendar events to avoid heavy physical queues.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {festivals.map((fest, idx) => (
-              <div key={idx} className="bg-brand-bgSurface border border-brand-borderSubtle rounded-2xl overflow-hidden shadow-soft-sm flex flex-col h-[380px]">
-                <div className="h-44 bg-slate-100 overflow-hidden relative">
-                  <img src={fest.image} alt={fest.name} className="w-full h-full object-cover" />
-                  <div className="absolute bottom-3 left-3 bg-brand-gold text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded">
-                    {fest.date}
-                  </div>
-                </div>
-                <div className="p-6 flex flex-col justify-between flex-grow">
-                  <div className="space-y-2">
-                    <h4 className="text-lg font-bold text-brand-textPrimary font-section">{fest.name}</h4>
-                    <p className="text-xs text-brand-textSecondary leading-relaxed">{fest.description}</p>
-                  </div>
-                  <Link to="/explore" className="text-xs font-bold text-brand-gold hover:text-brand-hover inline-flex items-center gap-1 pt-4 border-t border-brand-borderSubtle/50">
-                    Find festival slots <ChevronRight size={14} />
-                  </Link>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
