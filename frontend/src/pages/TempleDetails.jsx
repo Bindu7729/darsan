@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../utils/api';
+import { fallbackTemples } from '../utils/fallbackTemples';
 import { Star, MapPin, Landmark, Calendar, ShieldCheck, Heart, Coffee, Bed, ArrowLeft, Loader2, MessageSquare, Send, Sparkles } from 'lucide-react';
 import Footer from '../components/Footer';
 
@@ -23,10 +24,19 @@ export default function TempleDetails() {
       try {
         setLoading(true);
         const templeRes = await api.get(`/temples/${id}`);
-        setTemple(templeRes.data);
+        if (templeRes.data) {
+          setTemple(templeRes.data);
+        } else {
+          const match = fallbackTemples.find(t => t._id === id || t.name.toLowerCase().includes(id.toLowerCase())) || fallbackTemples[0];
+          setTemple(match);
+        }
         
-        const reviewsRes = await api.get(`/temples/${id}/reviews`);
-        setReviews(reviewsRes.data);
+        try {
+          const reviewsRes = await api.get(`/temples/${id}/reviews`);
+          setReviews(reviewsRes.data || []);
+        } catch {
+          setReviews([]);
+        }
 
         // Check if favorite in localstorage
         const savedWishlist = localStorage.getItem('darshanease_wishlist');
@@ -37,7 +47,10 @@ export default function TempleDetails() {
 
         setLoading(false);
       } catch (err) {
-        console.error("Temple details load error:", err);
+        console.warn("Temple details load error, checking offline registry:", err);
+        const match = fallbackTemples.find(t => t._id === id || t.name.toLowerCase().includes(id.toLowerCase())) || fallbackTemples[0];
+        setTemple(match);
+        setReviews([]);
         setLoading(false);
       }
     };

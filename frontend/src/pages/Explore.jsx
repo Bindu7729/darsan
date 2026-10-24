@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../utils/api';
+import { fallbackTemples } from '../utils/fallbackTemples';
 import { Link } from 'react-router-dom';
 import { Search, MapPin, Star, Flame, Loader2, Heart, Award, Filter, X } from 'lucide-react';
 import Footer from '../components/Footer';
@@ -24,11 +25,16 @@ export default function Explore() {
   useEffect(() => {
     api.get('/temples')
       .then(res => {
-        setTemples(res.data);
+        if (res.data && res.data.length > 0) {
+          setTemples(res.data);
+        } else {
+          setTemples(fallbackTemples);
+        }
         setLoading(false);
       })
       .catch(err => {
-        console.error("Explore Fetch Error:", err);
+        console.warn("Explore Fetch Error, using offline temple directory:", err);
+        setTemples(fallbackTemples);
         setLoading(false);
       });
   }, []);

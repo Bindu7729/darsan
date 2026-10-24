@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../utils/api';
+import { fallbackTemples } from '../utils/fallbackTemples';
 import { Link } from 'react-router-dom';
 import { Search, Calendar, MapPin, Star, ArrowRight, Flame, Loader2, Landmark, Award, ShieldCheck, Heart, Sparkles, CheckCircle2, HelpCircle } from 'lucide-react';
 import Footer from '../components/Footer';
@@ -15,10 +16,15 @@ export default function Home() {
     const fetchTemples = async () => {
       try {
         const response = await api.get('/temples');
-        setTemples(response.data);
+        if (response.data && response.data.length > 0) {
+          setTemples(response.data);
+        } else {
+          setTemples(fallbackTemples);
+        }
         setLoading(false);
       } catch (err) {
-        console.error('API Pipeline Fetch Failure:', err);
+        console.warn('API Pipeline Fetch Failure, displaying offline temple registry:', err);
+        setTemples(fallbackTemples);
         setLoading(false);
       }
     };
