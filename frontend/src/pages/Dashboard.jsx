@@ -13,11 +13,18 @@ export default function Dashboard() {
   const fetchMyBookings = async () => {
     try {
       const res = await api.get('/bookings/my');
-      setBookings(res.data);
+      if (res.data && res.data.length > 0) {
+        setBookings(res.data);
+      } else {
+        const local = JSON.parse(localStorage.getItem('darshanease_bookings') || '[]');
+        setBookings(local);
+      }
       setLoading(false);
       setRefreshing(false);
     } catch (err) {
-      console.error("Dashboard Load Error:", err);
+      console.warn("Dashboard Load Error, reading locally recorded passes:", err);
+      const local = JSON.parse(localStorage.getItem('darshanease_bookings') || '[]');
+      setBookings(local);
       setLoading(false);
       setRefreshing(false);
     }
