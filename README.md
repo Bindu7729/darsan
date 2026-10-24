@@ -3,7 +3,7 @@
 A premium, modern full-stack MERN Stack web application designed like a modern SaaS product, offering devotees a seamless way to discover temples, book darshan slots, write reviews, and verify entries.
 
 ### 🌐 Live Deployment Links
-*   **Website (Frontend):** [https://frontend-bindu295.vercel.app](https://frontend-bindu295.vercel.app)
+*   **Website (Frontend):** [https://darsan-bindu295.vercel.app](https://darsan-bindu295.vercel.app)
 *   **API Service (Backend):** [https://backend-opal-iota-43.vercel.app/api/health](https://backend-opal-iota-43.vercel.app/api/health)
 
 ---
